@@ -38,7 +38,7 @@ function draw() {
   }
   if(keyIsDown(RIGHT_ARROW)){
     x = x + 5;
-    if(x > width){ //off left edge
+    if(x > width){ //off right edge
       x = 0; //(create a wrap aroung effect)
     }
   }
