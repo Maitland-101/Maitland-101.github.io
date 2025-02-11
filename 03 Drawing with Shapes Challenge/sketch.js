@@ -23,7 +23,7 @@ function draw() {
   if(keyIsDown(RIGHT_ARROW)){
     boxX = boxX + 5;
     if(boxX > width){ //off right edge
-      boxX = -100; //(create a wrap aroung effect)
+      boxX = -100;
     }
   }
   if(keyIsDown(UP_ARROW)){
