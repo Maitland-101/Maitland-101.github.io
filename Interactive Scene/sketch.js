@@ -2,30 +2,51 @@
 // Alyssa Maitland
 // Feb.11, 2025
 
-let x = 300;
+let x;
 let y;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  x = width/2;
   y = height*5/6;
 }
 
 function draw() {
   background(220);
-  scene();
+  alley();
   character();
+  window();
   fill("green");
   rect(width*0.8,height*0.9,width);
   invert();
   move();
 }
 
-function scene(){
+function swindow(){
   // makes the stagnant objetcs in the scene
+  fill("lightgrey");
+  noStroke();
+  quad(0,y+80,width,y+80,width,height,0,y+200);
+  quad(0,0,width,0,width,80,0,80);
+  quad(0,0,80,0,80,height,0,height);
+  quad(width,0,width-80,0,width-80,height,width,height);
+  stroke();
+}
+
+function alley(){
   fill("grey");
   rect(width*5/6,0,width,height);
   rect(0,0,width/6,height);
-  quad(x+100,y-100,x+150,y-150,x+200,y-100,x+150,y-50);
+  rect(x+147.5,y-80,5,100);
+  rect(x-102.5,y-80,5,100);
+  fill("black");
+  quad(x-50,y-100,x-100,y-150,x-150,y-100,x-100,y-50);
+  fill("yellow");
+  quad(x-60,y-100,x-100,y-140,x-140,y-100,x-100,y-60);
+  fill("red");
+  triangle(x+100,y-100,x+200,y-100,x+150,y-50);
+  fill("white");
+  triangle(x+115,y-95,x+185,y-95,x+150,y-60);
 }
 
 function character(){
