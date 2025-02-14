@@ -28,6 +28,17 @@ function draw() {
   }
 }
 
+function keyPressed(){
+  //on each keypress, let's advance the state
+  //variable 1-> 2->3 3->4(for 2 seconds)->1
+  if(shapeState < 4){
+    shapeState++;
+    if(shapeState === 4){
+      startTime = millis();
+    }
+  }
+}
+
 function drawShape(){
   switch(shapeState){
   case 1:
@@ -45,17 +56,6 @@ function drawShape(){
       let x = random(width*0.4, width*0.6);
       let y = random(height*0.4, height*0.6);
       line(x,y, x+25,y);
-    }
-  }
-}
-
-function keyPressed(){
-  //on each keypress, let's advance the state
-  //variable 1-> 2->3 3->4(for 2 seconds)->1
-  if(shapeState < 4){
-    shapeState++;
-    if(shapeState === 4){
-      startTime = millis();
     }
   }
 }
