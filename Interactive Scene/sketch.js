@@ -2,25 +2,33 @@
 // Alyssa Maitland
 // Feb.11, 2025
 
+// x,y for background
 let x;
 let y;
+// x,y for cat
+let catX;
+let catY;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   x = width/2;
   y = height*5/6;
+  catX = width/2;
+  catY = height*5/6;
 }
 
 function draw() {
   background(220);
   alley();
   character();
-  window();
+  invert();
+  swindow();
   fill("green");
   rect(width*0.8,height*0.9,width);
-  invert();
   move();
+  text('Alyssa.M', 10, height-10);
 }
+
 
 function swindow(){
   // makes the stagnant objetcs in the scene
@@ -30,13 +38,15 @@ function swindow(){
   quad(0,0,width,0,width,80,0,80);
   quad(0,0,80,0,80,height,0,height);
   quad(width,0,width-80,0,width-80,height,width,height);
-  stroke();
 }
 
 function alley(){
   fill("grey");
   rect(width*5/6,0,width,height);
   rect(0,0,width/6,height);
+  fill("darkgrey");
+  rect(0,y+20,width);
+  fill("grey");
   rect(x+147.5,y-80,5,100);
   rect(x-102.5,y-80,5,100);
   fill("black");
@@ -53,20 +63,20 @@ function character(){
   // makes the shapes for the character
   noStroke();
   fill("black");
-  ellipse(x+25,y+25,100,60);
-  triangle(x-10,y+5,x,y-10,x+10,y);
-  triangle(x+40,y,x+50,y-10,x+60,y+5);
+  ellipse(catX+25,catY+25,100,60);
+  triangle(catX-10,catY+5,catX,catY-10,catX+10,catY);
+  triangle(catX+40,catY,catX+50,catY-10,catX+60,catY+5);
   stroke("yellow");
-  circle(x+10,y+20,10);
-  circle(x+40,y+20,10);
+  circle(catX+10,catY+20,10);
+  circle(catX+40,catY+20,10);
   stroke(40,40,40);
-  ellipse(x+25,y+30,8,5);
-  line(x,y+20,x-10,y+15);
-  line(x,y+25,x-12,y+25);
-  line(x,y+30,x-10,y+35);
-  line(x+60,y+15,x+50,y+20);
-  line(x+62,y+25,x+50,y+25);
-  line(x+60,y+35,x+50,y+30);
+  ellipse(catX+25,catY+30,8,5);
+  line(catX,catY+20,catX-10,catY+15);
+  line(catX,catY+25,catX-12,catY+25);
+  line(catX,catY+30,catX-10,catY+35);
+  line(catX+60,catY+15,catX+50,catY+20);
+  line(catX+62,catY+25,catX+50,catY+25);
+  line(catX+60,catY+35,catX+50,catY+30);
   stroke(0,0,0);
 }
 
@@ -75,20 +85,20 @@ function invert(){
   if(mouseX > width*0.8 && mouseY>height*0.9){
     noStroke();
     fill("white");
-    ellipse(x+25,y+25,100,60);
-    triangle(x-10,y+5,x,y-10,x+10,y);
-    triangle(x+40,y,x+50,y-10,x+60,y+5);
+    ellipse(catX+25,catY+25,100,60);
+    triangle(catX-10,catY+5,catX,catY-10,catX+10,catY);
+    triangle(catX+40,catY,catX+50,catY-10,catX+60,catY+5);
     stroke("purple");
-    circle(x+10,y+20,10);
-    circle(x+40,y+20,10);
+    circle(catX+10,catY+20,10);
+    circle(catX+40,catY+20,10);
     stroke(215,215,215);
-    ellipse(x+25,y+30,8,5);
-    line(x,y+20,x-10,y+15);
-    line(x,y+25,x-12,y+25);
-    line(x,y+30,x-10,y+35);
-    line(x+60,y+15,x+50,y+20);
-    line(x+62,y+25,x+50,y+25);
-    line(x+60,y+35,x+50,y+30);
+    ellipse(catX+25,catY+30,8,5);
+    line(catX,catY+20,catX-10,catY+15);
+    line(catX,catY+25,catX-12,catY+25);
+    line(catX,catY+30,catX-10,catY+35);
+    line(catX+60,catY+15,catX+50,catY+20);
+    line(catX+62,catY+25,catX+50,catY+25);
+    line(catX+60,catY+35,catX+50,catY+30);
     stroke(0,0,0);
   }
 }
@@ -96,15 +106,15 @@ function invert(){
 function move(){
   // allows charcter to move when an arrow key is pressed
   if (keyIsDown(LEFT_ARROW)){
-    x = x-5;
+    catX = catX-5;
   }
   if (keyIsDown(RIGHT_ARROW)){
-    x = x+5;
+    catX = catX+5;
   }
   if (keyIsDown(UP_ARROW)){
-    y = y-5;
+    catY = catY-5;
   }  
   if (keyIsDown(DOWN_ARROW)){
-    y = y+5;
+    catY = catY+5;
   }
 }
