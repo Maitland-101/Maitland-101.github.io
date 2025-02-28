@@ -15,12 +15,20 @@ let size = 50;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  rectMode(CENTER);
 }
 
 function draw() {
   background(220);
   drawSquare();
+}
+
+function keyPressed(){
+  if(key === 'a' && size>5){
+    size = size-5;
+  }
+  if(key === 'd' && size<50){
+    size = size+5;
+  }
 }
 
 function drawSquare(){
@@ -39,23 +47,14 @@ function drawSquare(){
   }
   else if(d === 2){
     x = x-5;
-    if(x===-size){
+    if(x=== 0){
       d = 3;
     }
   }
   else if(d === 3){
     y = y-5;
-    if(y===-size){
+    if(y === 0){
       d = 0;
     }
-  }
-}
-
-function keyPressed(){
-  if(key === 'a' && size>5){
-    size = size-5;
-  }
-  if(key === 'd' && size<50){
-    size = size+5;
   }
 }
