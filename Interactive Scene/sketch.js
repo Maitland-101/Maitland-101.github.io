@@ -8,6 +8,7 @@ let y;
 // x,y for cat
 let catX;
 let catY;
+let currentBack = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -15,10 +16,11 @@ function setup() {
   y = height*5/6;
   catX = width/2;
   catY = height*5/6;
+  back();
 }
 
 function draw() {
-  background(220);
+  //background(220);
   alley();
   character();
   invert();
@@ -41,6 +43,7 @@ function swindow(){
 }
 
 function alley(){
+  //generates the shapes for the features found in the alley
   fill("grey");
   rect(width*5/6,0,width,height);
   rect(0,0,width/6,height);
@@ -116,5 +119,23 @@ function move(){
   }  
   if (keyIsDown(DOWN_ARROW)){
     catY = catY+5;
+  }
+}
+
+function back(){
+  if(mouseIsPressed === true && mouseButton === CENTER){
+    currentBack = currentBack+1;
+    if(currentBack === 0){
+      background(0,0,0);
+    }
+    else if(currentBack === 1){
+      background(100,100,100);    
+    }
+    else if(currentBack === 2){
+      background(200,200,200);
+    }
+    else if (currentBack === 3){
+      background(10,20,200);
+    }
   }
 }
