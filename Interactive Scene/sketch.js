@@ -8,6 +8,7 @@ let y;
 // x,y for cat
 let catX;
 let catY;
+//variable for background
 let currentBack = 0;
 
 function setup() {
@@ -16,21 +17,42 @@ function setup() {
   y = height*5/6;
   catX = width/2;
   catY = height*5/6;
-  back();
 }
 
 function draw() {
-  //background(220);
   alley();
   character();
   invert();
   swindow();
-  fill("green");
-  rect(width*0.8,height*0.9,width);
   move();
-  text('Alyssa.M', 10, height-10);
+  squares();
 }
 
+function mouseReleased(){
+  //changes the background when the mouse wheel is clicked and covers characters path
+  if(mouseButton === CENTER){
+    if(currentBack === 0){
+      fill(0,0,0);
+      rect(0,0,width,height);
+    }
+    else if(currentBack === 1){
+      fill(100,100,100);
+      rect(0,0,width,height);   
+    }
+    else if(currentBack === 2){
+      fill('white');
+      rect(0,0,width,height);
+    }
+    else if (currentBack === 3){
+      fill(10,20,200);
+      rect(0,0,width,height);
+    }
+    currentBack = currentBack+1;
+    if(currentBack >= 4){
+      currentBack = 0;
+    }
+  }
+}
 
 function swindow(){
   // makes the stagnant objetcs in the scene
@@ -63,7 +85,7 @@ function alley(){
 }
 
 function character(){
-  // makes the shapes for the character
+  // draws the shape and path for the character
   noStroke();
   fill("black");
   ellipse(catX+25,catY+25,100,60);
@@ -84,7 +106,7 @@ function character(){
 }
 
 function invert(){
-  // if the mouse is on the box in the corner the colour of the cat is inverted
+  // if the mouse is on the box in the corner the colour of the character is inverted
   if(mouseX > width*0.8 && mouseY>height*0.9){
     noStroke();
     fill("white");
@@ -122,20 +144,11 @@ function move(){
   }
 }
 
-function back(){
-  if(mouseIsPressed === true && mouseButton === CENTER){
-    currentBack = currentBack+1;
-    if(currentBack === 0){
-      background(0,0,0);
-    }
-    else if(currentBack === 1){
-      background(100,100,100);    
-    }
-    else if(currentBack === 2){
-      background(200,200,200);
-    }
-    else if (currentBack === 3){
-      background(10,20,200);
-    }
-  }
+function squares(){
+  //draws the text and area of the invert square
+  fill("green");
+  rect(width*0.8,height*0.9,width);
+  text('Alyssa.M', 10, height-10);
+  fill("white");
+  text('INVERT', width*0.9, height*0.95);
 }
