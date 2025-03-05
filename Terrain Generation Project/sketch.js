@@ -1,6 +1,6 @@
-// Project Title
-// Your Name
-// Date
+// Terrain Generation Project
+// Alyssa Maitland
+// Mar.4, 2025
 //
 
 let rectWidth = 30;
