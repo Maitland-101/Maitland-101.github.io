@@ -38,13 +38,15 @@ function keyPressed(){
 }
 
 function drawFlag(x2,y2){
-  let peak = 0;
-  let tallX;
-  let tallY;
-  if(y2>peak){
-    peak = y2;
-    tallX = x;
-    tallY = y2;
+  while(x2<width){
+    let peak = 0;
+    let tallX;
+    let tallY;
+    if(y2>peak){
+      peak = y2;
+      tallX = x;
+      tallY = y2;
+  }
   }
 }
 
