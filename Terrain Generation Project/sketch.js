@@ -5,51 +5,56 @@
 
 let rectWidth = 30;
 let noiseTime = 5;
+let noiseStart = 5;
+let noiseSpeed = 0.01;
+let peak = 0;
+let tallX;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   generateTerrain();
+  drawFlag(tallX,peak);
+}
+
+function draw() {
+  //background(220);
+  noiseTime = noiseStart;
+  noiseStart += noiseSpeed;
 }
 
 function generateTerrain(){
   //use a loop to generate and draw rectangles to look like 2D terrain
   rectMode(CORNERS);
-  for(let x = 0; x<width; x+= rectWidth){
+  for(x1 = 0; x1<width; x1+= rectWidth){
     //generate a random height change this from using random() to noise()
     let rectHeight = noise(noiseTime);
     rectHeight = map(rectHeight, 0, 1, 50, 500);
     rectHeight = round(rectHeight);
     //calculate the other corner of rectangle
-    let x2 = x+rectWidth;
+    let x2 = x1+rectWidth;
     let y2 = height - rectHeight;
-    rect(x, height, x2, y2);
-    noiseTime = noiseTime + 0.01;
+    rect(x1, height, x2, y2);
+    noiseTime += noiseSpeed;
+    // store the tallest height and its horizontal positon
+    if(y2>peak){
+      peak = y2;
+      tallX = x1;
+    }
   }
   rectMode(CORNER);
 }
 
 function keyPressed(){
-  if(key === 39){
-    rectWidth =+ 5;
+  if(keyCode === 39){
+    rectWidth = rectWidth+5;
   }
-  if(key === 37){
+  if(keyCode === 37){
     rectWidth = rectWidth-5;
   }
 }
 
-function drawFlag(x2,y2){
-  while(x2<width){
-    let peak = 0;
-    let tallX;
-    let tallY;
-    if(y2>peak){
-      peak = y2;
-      tallX = x;
-      tallY = y2;
-  }
-  }
-}
-
-function draw() {
-  //background(220);
+function drawFlag(x,y){
+  //draw a flag in the middle of the highest peak
+  fill('red');
+  circle(x+rectWidth/2,y,25);
 }
