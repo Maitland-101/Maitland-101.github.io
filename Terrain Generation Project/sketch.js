@@ -36,7 +36,7 @@ function generateTerrain(){
     rect(x1, height, x2, y2);
     noiseTime += noiseSpeed;
     // store the tallest height and its horizontal positon
-    if(y2>peak){
+    if(rectHeight>peak){
       peak = y2;
       tallX = x1;
     }
@@ -55,6 +55,7 @@ function keyPressed(){
 
 function drawFlag(x,y){
   //draw a flag in the middle of the highest peak
-  fill('red');
-  circle(x+rectWidth/2,y,25);
+  fill('grey');
+  rect(x+rectWidth/2,y-25,5,25);
+  triangle(x+rectWidth/2, y-35, x+rectWidth/2+15, y-25, x+rectWidth/2, y-15)
 }
