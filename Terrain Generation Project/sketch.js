@@ -57,5 +57,5 @@ function drawFlag(x,y){
   //draw a flag in the middle of the highest peak
   fill('grey');
   rect(x+rectWidth/2,y-25,5,25);
-  triangle(x+rectWidth/2, y-35, x+rectWidth/2+15, y-25, x+rectWidth/2, y-15)
+  triangle(x+rectWidth/2, y-35, x+rectWidth/2+15, y-25, x+rectWidth/2, y-15);
 }
