@@ -2,6 +2,9 @@
 // Alyssa Maitland
 // Mar.12, 2025
 
+//1. add two more book objects(each in var) add to the shelf
+//2. use a loop and an array to generate 20+ books
+
 let myBook;
 
 function setup() {

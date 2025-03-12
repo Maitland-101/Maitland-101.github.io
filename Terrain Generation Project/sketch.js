@@ -3,23 +3,23 @@
 // Mar.4, 2025
 //
 
-let rectWidth = 30;
 let noiseTime = 5;
 let noiseStart = 5;
 let noiseSpeed = 0.01;
+let rectWidth = 30;
 let peak = 0;
 let tallX;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  generateTerrain();
-  drawFlag(tallX,peak);
 }
 
 function draw() {
-  //background(220);
+  background(255);
   noiseTime = noiseStart;
-  noiseStart += noiseSpeed;
+  noiseStart += noiseSpeed; // count time from start of program
+  generateTerrain();
+  drawFlag(tallX,height-peak);
 }
 
 function generateTerrain(){
@@ -37,7 +37,8 @@ function generateTerrain(){
     noiseTime += noiseSpeed;
     // store the tallest height and its horizontal positon
     if(rectHeight>peak){
-      peak = y2;
+      peak = rectHeight;
+      print("update");
       tallX = x1;
     }
   }
@@ -45,6 +46,7 @@ function generateTerrain(){
 }
 
 function keyPressed(){
+  // when an arrow key is pressed change the width of the rectangle
   if(keyCode === 39){
     rectWidth = rectWidth+5;
   }
