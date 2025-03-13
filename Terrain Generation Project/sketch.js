@@ -50,7 +50,7 @@ function keyPressed(){
   if(keyCode === 39){
     rectWidth = rectWidth+5;
   }
-  if(keyCode === 37){
+  if(keyCode === 37 && rectWidth>15){
     rectWidth = rectWidth-5;
   }
 }
