@@ -6,9 +6,19 @@
 //2. use a loop and an array to generate 20+ books
 
 let myBook;
+let bookshelf = [];
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
+  //make 20 books in a row
+  let x = 50;
+  let cover = ['softcover','hardcover','leatherbound'];
+  for(let i=0; i<20; i++){
+    let choice = int(random(3)); //0, 1, 2
+    bookshelf.push(new Book("A", "Mr.Booth", 1111111111111, cover[choice], 200, x));
+    x += 20;
+  }
+
   myBook = new Book("CS30 text", "Mr.Scott", 1234567891011, "leatherbound", 515, width*0.3);
 }
 
