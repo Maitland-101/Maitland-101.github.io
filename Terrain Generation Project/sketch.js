@@ -1,7 +1,7 @@
 // Terrain Generation Project
 // Alyssa Maitland
 // Mar.4, 2025
-//
+// generate a terrain based off of the noise function
 
 let noiseTime = 5;
 let noiseStart = 5;

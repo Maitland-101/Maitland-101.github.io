@@ -19,10 +19,10 @@ function draw() {
   racer1.display();
   racer1.move();
   //racers();
-  for(i=0; i<NUM_RACERS; i++){ 
-    racer1.move();
-    racer1.display();
-  }
+  // for(i=0; i<NUM_RACERS; i++){ 
+  //   racer1.move();
+  //   racer1.display();
+  // }
   
 }
 
