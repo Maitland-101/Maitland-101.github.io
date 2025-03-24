@@ -5,16 +5,20 @@
 //Global Variables
 let car;
 let carWidth = 50;
+let wE;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  car = new Vehicle(0,"west");
+  wE = random(floor(2)); // 1 = west, 0 = east
+  car = new Vehicle(0,0);
 }
 
 function draw() {
   background(220);
   drawRoad();
   car.action();
+  fill('red');
+  text(wE,100,10);
 }
 
 function drawRoad(){
@@ -43,10 +47,10 @@ class Vehicle{
     //draw a car/truck at the x,y of the direction
     fill(this.c);
     if(this.carType === 0){
-      if(this.direction === "west"){
+      if(this.direction === 1){ // 1 = west
         rect(this.x, this.y/2, carWidth);
       }
-      else if(this.y<height/2){
+      if(this.direction === 0){
         circle(this.x, this.y, carWidth);
       }
     }
@@ -56,23 +60,51 @@ class Vehicle{
   }
 
   move(){
-    this.x += this.carSpeed;
-    if(this.x>width){
-      this.x = -carWidth;
+    if(this.direction === 0){
+      this.x += this.carSpeed;
+      if(this.x>width){
+        this.x = -carWidth;
+      }
+    }
+    if(this.direction === 1){
+      this.x -= this.carSpeed;
+      if(this.x<0){
+        this.x = width;
+      }
     }
   }
 
   speedUp(){
+    if(this.carSpeed<15){
+      this.carSpeed += 1;
+    }
   }
 
   speedDown(){
+    if(this.carSpeed>1){
+      this.carSpeed -= 1;
+    }
   }
 
   changeColor(){
+    this.c = color(random(255), random(255), random(255));
   }
 
   action(){
-    this.display();
     this.move();
+    this.chance = random(int(1,100)); //generates a new number evey tim the function is called
+    if(this.chance === 66){
+      //if chance = 66 increase the speed
+      this.speedUp();
+    }
+    if(this.chance === 99){
+      //if chance = 99 decrease the speed
+      this.speedDown();
+    }
+    if(this.chance === 33){
+      //if chance = 33 change the color
+      this.changeColor();
+    }
+    this.display();
   }
 }
