@@ -9,8 +9,8 @@ let wE;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  wE = random(floor(2)); // 1 = west, 0 = east
-  car = new Vehicle(0,0);
+  wE = floor(random(2)); // 1 = west, 0 = east
+  car = new Vehicle(0,1);
 }
 
 function draw() {
@@ -48,9 +48,11 @@ class Vehicle{
     fill(this.c);
     if(this.carType === 0){
       if(this.direction === 1){ // 1 = west
-        rect(this.x, this.y/2, carWidth);
+        //this.y = random(height*0.2, height*0.5);
+        rect(this.x, this.y, carWidth);
       }
       if(this.direction === 0){
+        //this.y = random(height*0.5, height*0.6);
         circle(this.x, this.y, carWidth);
       }
     }
@@ -60,15 +62,15 @@ class Vehicle{
   }
 
   move(){
-    if(this.direction === 0){
+    if(this.direction === 0){ //when direction === 0, travel west
       this.x += this.carSpeed;
-      if(this.x>width){
+      if(this.x>width){ //wrap around screen
         this.x = -carWidth;
       }
     }
-    if(this.direction === 1){
+    if(this.direction === 1){ //when direction === 1, travel east
       this.x -= this.carSpeed;
-      if(this.x<0){
+      if(this.x<0){ //wrap around screen
         this.x = width;
       }
     }
@@ -92,7 +94,7 @@ class Vehicle{
 
   action(){
     this.move();
-    this.chance = random(int(1,100)); //generates a new number evey tim the function is called
+    this.chance = int(random(1,100)); //generates a new number evey tim the function is called
     if(this.chance === 66){
       //if chance = 66 increase the speed
       this.speedUp();
