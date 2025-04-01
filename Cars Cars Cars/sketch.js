@@ -10,7 +10,8 @@ let wE;
 function setup() {
   createCanvas(windowWidth, windowHeight);
   wE = floor(random(2)); // 1 = west, 0 = east
-  car = new Vehicle(0,1);
+  car = floor(random(2)); // 0 = car, 1 = truck
+  car = new Vehicle(0,wE);
 }
 
 function draw() {
@@ -38,9 +39,14 @@ class Vehicle{
     this.carType = type;
     this.c = color(random(255), random(255), random(255));
     this.x = random(width);
-    this.y = random(height*0.2, height*0.6);
     this.direction = direction;
     this.carSpeed = 10;
+    if(direction === 1){
+      this.y = random(height*0.2, height*0.5);
+    }
+    if(direction === 0){
+      this.y = random(height*0.5, height*0.8);
+    }
   }
   //2. class methods
   display(){
