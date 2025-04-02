@@ -6,20 +6,31 @@
 let car;
 let carWidth = 50;
 let wE;
+let eastbound = [];
+let westbound = [];
+const numCar = 20;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
   wE = floor(random(2)); // 1 = west, 0 = east
   car = floor(random(2)); // 0 = car, 1 = truck
-  car = new Vehicle(0,wE);
+  for(let i = 0; i<=numCar; i++){
+    let westCar = new Vehicle(car,1);
+    westbound.push(westCar);
+  }
+  //car = new Vehicle(0,wE);
 }
 
 function draw() {
   background(220);
   drawRoad();
-  car.action();
+  //car.action();
   fill('red');
   text(wE,100,10);
+  for(let i=0; i<westbound.length; i++){
+    let c = westbound[i]
+    c.action();
+  }
 }
 
 function drawRoad(){
@@ -56,14 +67,18 @@ class Vehicle{
       if(this.direction === 1){ // 1 = west
         //this.y = random(height*0.2, height*0.5);
         rect(this.x, this.y, carWidth);
+
+      }
+    }
+    if(this.carType === 1){
+      if(this.direction === 1){ // 1 = west
+        //this.y = random(height*0.2, height*0.5);
+        rect(this.x, this.y, carWidth);
       }
       if(this.direction === 0){
         //this.y = random(height*0.5, height*0.6);
         circle(this.x, this.y, carWidth);
       }
-    }
-    if(this.carType === 1){
-      rect(this.x, this.y, carWidth);
     }
   }
 
