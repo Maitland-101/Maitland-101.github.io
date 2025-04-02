@@ -4,7 +4,7 @@
 
 //Global Variables
 let car;
-let carWidth = 50;
+let carWidth = 40;
 let wE;
 let eastbound = [];
 let westbound = [];
@@ -12,11 +12,14 @@ const numCar = 20;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  wE = floor(random(2)); // 1 = west, 0 = east
-  car = floor(random(2)); // 0 = car, 1 = truck
   for(let i = 0; i<=numCar; i++){
+    //make a new object and push to an array
+    wE = floor(random(2)); // 1 = west, 0 = east
+    car = floor(random(2));  // 0 = car, 1 = truck
     let westCar = new Vehicle(car,1);
     westbound.push(westCar);
+    let eastCar = new Vehicle(car,0);
+    eastbound.push(eastCar);
   }
   //car = new Vehicle(0,wE);
 }
@@ -29,6 +32,10 @@ function draw() {
   text(wE,100,10);
   for(let i=0; i<westbound.length; i++){
     let c = westbound[i]
+    c.action();
+  }
+  for(let i=0; i<eastbound.length; i++){
+    let c = eastbound[i]
     c.action();
   }
 }
@@ -63,22 +70,14 @@ class Vehicle{
   display(){
     //draw a car/truck at the x,y of the direction
     fill(this.c);
+    stroke(0);
     if(this.carType === 0){
-      if(this.direction === 1){ // 1 = west
-        //this.y = random(height*0.2, height*0.5);
-        rect(this.x, this.y, carWidth);
-
-      }
+      rect(this.x, this.y, carWidth);
+      rect(this.x+carWidth, this.y, 10,carWidth);
     }
     if(this.carType === 1){
-      if(this.direction === 1){ // 1 = west
-        //this.y = random(height*0.2, height*0.5);
-        rect(this.x, this.y, carWidth);
-      }
-      if(this.direction === 0){
-        //this.y = random(height*0.5, height*0.6);
-        circle(this.x, this.y, carWidth);
-      }
+      circle(this.x, this.y, carWidth);
+      rect(this.x,this.y-carWidth/2,carWidth);
     }
   }
 
