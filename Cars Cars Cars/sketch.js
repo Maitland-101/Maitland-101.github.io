@@ -60,10 +60,10 @@ class Vehicle{
     this.direction = direction;
     this.carSpeed = 10;
     if(direction === 1){
-      this.y = random(height*0.2, height*0.5);
+      this.y = random((height*0.2)+30, (height*0.5)-40);
     }
     if(direction === 0){
-      this.y = random(height*0.5, height*0.8);
+      this.y = random((height*0.5)+30, (height*0.8)-40);
     }
   }
   //2. class methods
