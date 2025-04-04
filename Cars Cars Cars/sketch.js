@@ -8,11 +8,12 @@ let carWidth = 40;
 let wE;
 let eastbound = [];
 let westbound = [];
-const numCar = 20;
+const NUMCAR  = 20;
+let timeFrame;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
-  for(let i = 0; i<=numCar; i++){
+  for(let i = 0; i<=NUMCAR; i++){
     //make a new object and push to an array
     wE = floor(random(2)); // 1 = west, 0 = east
     car = floor(random(2));  // 0 = car, 1 = truck
@@ -21,23 +22,24 @@ function setup() {
     let eastCar = new Vehicle(car,0);
     eastbound.push(eastCar);
   }
-  //car = new Vehicle(0,wE);
 }
 
 function draw() {
   background(220);
   drawRoad();
-  //car.action();
-  fill('red');
-  text(wE,100,10);
+  car = floor(random(2));
   for(let i=0; i<westbound.length; i++){
+    // for the the length westbound create a vehicle
     let c = westbound[i]
     c.action();
   }
   for(let i=0; i<eastbound.length; i++){
+    // for the the length eastbound create a vehicle
     let c = eastbound[i]
     c.action();
-  }
+  } 
+  fill('red');
+  text(timeFrame,100,10);
 }
 
 function drawRoad(){
@@ -51,6 +53,22 @@ function drawRoad(){
   }
 }
 
+function mouseClicked(){
+  // when the left mouse is clicked add a car
+  if(mouseButton === LEFT){
+    if(keyIsDown(SHIFT)){
+      // vehicle going west when shift is held
+      let wClickCar = new Vehicle(car, 1);
+      westbound.push(wClickCar);
+    }
+    else{
+      // vehicle going east when the left mouse is pressed
+      let eClickCar = new Vehicle(car, 0);
+      eastbound.push(eClickCar);
+    }
+  }
+}
+
 class Vehicle{
   //1.consrutor
   constructor(type, direction){
@@ -60,9 +78,11 @@ class Vehicle{
     this.direction = direction;
     this.carSpeed = 10;
     if(direction === 1){
+      //if the car goes west stay in the top lane
       this.y = random((height*0.2)+30, (height*0.5)-40);
     }
     if(direction === 0){
+      //if the car goes east stay in the bottom lane
       this.y = random((height*0.5)+30, (height*0.8)-40);
     }
   }
@@ -72,10 +92,12 @@ class Vehicle{
     fill(this.c);
     stroke(0);
     if(this.carType === 0){
+      // draw a truck
       rect(this.x, this.y, carWidth);
       rect(this.x+carWidth, this.y, 10,carWidth);
     }
     if(this.carType === 1){
+      // draw a car
       circle(this.x, this.y, carWidth);
       rect(this.x,this.y-carWidth/2,carWidth);
     }
@@ -98,12 +120,14 @@ class Vehicle{
 
   speedUp(){
     if(this.carSpeed<15){
+      //make top speed 15
       this.carSpeed += 1;
     }
   }
 
   speedDown(){
-    if(this.carSpeed>1){
+    if(this.carSpeed>0){
+      //make minimum speed 0
       this.carSpeed -= 1;
     }
   }
@@ -128,5 +152,17 @@ class Vehicle{
       this.changeColor();
     }
     this.display();
+    this.trafficLight();
+  }
+
+  trafficLight(){
+    timeFrame = frameCount;
+    if(keyCode === 32){
+      this.carSpeed = 0;
+      for(let i = 0; i<timeFrame; i++){
+        fill('grey');
+        circle(0,0,500);
+      }
+    }
   }
 }
