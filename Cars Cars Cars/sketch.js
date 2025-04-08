@@ -10,6 +10,7 @@ let eastbound = [];
 let westbound = [];
 const NUMCAR  = 20;
 let timeFrame;
+let count = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -39,7 +40,8 @@ function draw() {
     c.action();
   } 
   fill('red');
-  text(timeFrame,100,10);
+  text(count,100,10);
+  count += 1;
 }
 
 function drawRoad(){
