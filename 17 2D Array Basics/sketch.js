@@ -21,8 +21,13 @@ function renderGrid() {
       let fillColor = grid[y][x];
       fill(fillColor);
       square(x * squareSize, y * squareSize, squareSize);
-      if(grid[y][x] === 0){
-        text('you win', 50,50);
+      for(let i = 0; i<grid.length; i++){
+        let avgFill =+ fillColor;
+        avgFill = avgFill/(NUM_ROWS*NUM_COLS);
+        if(avgFill === 0){
+          fill(255,0,0);
+          text('you win', 50,50);
+        }
       }
     }
   }
