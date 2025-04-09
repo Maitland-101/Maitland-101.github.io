@@ -9,8 +9,6 @@ let wE;
 let eastbound = [];
 let westbound = [];
 const NUMCAR  = 20;
-let timeFrame;
-let count = 0;
 
 function setup() {
   createCanvas(windowWidth, windowHeight);
@@ -39,9 +37,6 @@ function draw() {
     let c = eastbound[i]
     c.action();
   } 
-  fill('red');
-  text(count,100,10);
-  count += 1;
 }
 
 function drawRoad(){
@@ -135,6 +130,7 @@ class Vehicle{
   }
 
   changeColor(){
+    //changes the color of the car
     this.c = color(random(255), random(255), random(255));
   }
 
@@ -158,12 +154,26 @@ class Vehicle{
   }
 
   trafficLight(){
-    timeFrame = frameCount;
-    if(keyCode === 32){
-      this.carSpeed = 0;
-      for(let i = 0; i<timeFrame; i++){
-        fill('grey');
-        circle(0,0,500);
+    //draw a green traffic light
+    fill(0);
+    rect(10,70,30,60);
+    fill(0,255,0);
+    circle(25,115,20);
+    fill(255,0,0,100);
+    circle(25,85,20);
+    this.f = 0;
+    if(keyIsPressed){
+      if(keyCode === 32){
+        // when the space bar is pressed
+        while(this.f<120){
+          //stops cars for 120 frames and light turns red
+          fill(0,100,0);
+          circle(25,115,20);
+          fill(255,0,0,255);
+          circle(25,85,20);
+          this.carSpeed = 0;
+          this.f += 1;
+        }
       }
     }
   }
