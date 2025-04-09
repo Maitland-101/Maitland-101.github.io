@@ -21,6 +21,14 @@ function renderGrid() {
       let fillColor = grid[y][x];
       fill(fillColor);
       square(x * squareSize, y * squareSize, squareSize);
+      for(let i = 0; i<grid.length; i++){
+        let avgFill =+ fillColor;
+        avgFill = avgFill/(NUM_ROWS*NUM_COLS);
+        if(avgFill === 0){
+          fill(255,0,0);
+          text('you win', 50,50);
+        }
+      }
     }
   }
 }
@@ -46,7 +54,7 @@ function mousePressed() {
   flip(x,y);
 
   //sometimes: (depending on position) flip the neightbours
-  if(keyIsDown === 16){
+  if(keyIsDown(ALT) === false){
     if(y > 0){
       flip(x, y-1) //North
     }
