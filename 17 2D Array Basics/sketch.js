@@ -21,6 +21,9 @@ function renderGrid() {
       let fillColor = grid[y][x];
       fill(fillColor);
       square(x * squareSize, y * squareSize, squareSize);
+      if(grid[y][x] === 0){
+        text('you win', 50,50);
+      }
     }
   }
 }
@@ -46,7 +49,7 @@ function mousePressed() {
   flip(x,y);
 
   //sometimes: (depending on position) flip the neightbours
-  if(keyIsDown === 16){
+  if(keyIsDown(ALT) === false){
     if(y > 0){
       flip(x, y-1) //North
     }
