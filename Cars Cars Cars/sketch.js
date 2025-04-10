@@ -161,18 +161,16 @@ class Vehicle{
     circle(25,115,20);
     fill(255,0,0,100);
     circle(25,85,20);
-    this.f = 0;
     if(keyIsPressed){
       if(keyCode === 32){
         // when the space bar is pressed
-        while(this.f<120){
+        for(this.f = 0; this.f<120; this.f++){
           //stops cars for 120 frames and light turns red
           fill(0,100,0);
           circle(25,115,20);
           fill(255,0,0,255);
           circle(25,85,20);
           this.carSpeed = 0;
-          this.f += 1;
         }
       }
     }
