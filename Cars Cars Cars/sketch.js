@@ -8,6 +8,7 @@ let carWidth = 40;
 let wE;
 let eastbound = [];
 let westbound = [];
+let traffic;
 const NUMCAR  = 20;
 
 function setup() {
@@ -21,6 +22,7 @@ function setup() {
     let eastCar = new Vehicle(car,0);
     eastbound.push(eastCar);
   }
+  traffic = new TrafficLight();
 }
 
 function draw() {
@@ -37,6 +39,7 @@ function draw() {
     let c = eastbound[i]
     c.action();
   } 
+  traffic.run();
 }
 
 function drawRoad(){
@@ -135,7 +138,11 @@ class Vehicle{
   }
 
   action(){
-    this.move();
+    //call all class methods
+    if(traffic.state === 'green'){
+      // move when the light is green
+      this.move();
+    }
     this.chance = int(random(1,100)); //generates a new number evey tim the function is called
     if(this.chance === 66){
       //if chance = 66 increase the speed
@@ -150,29 +157,44 @@ class Vehicle{
       this.changeColor();
     }
     this.display();
-    this.trafficLight();
+  }
+} 
+
+class TrafficLight{
+  // 1.constructor
+  constructor(){
+    this.t = 0;
+    this.state = 'green';
   }
 
-  trafficLight(){
-    //draw a green traffic light
+  // 2.class methods
+  run(){
+    //draw a traffic light
     fill(0);
     rect(10,70,30,60);
-    fill(0,255,0);
-    circle(25,115,20);
-    fill(255,0,0,100);
-    circle(25,85,20);
-    if(keyIsPressed){
-      if(keyCode === 32){
-        // when the space bar is pressed
-        for(this.f = 0; this.f<120; this.f++){
-          //stops cars for 120 frames and light turns red
-          fill(0,100,0);
-          circle(25,115,20);
-          fill(255,0,0,255);
-          circle(25,85,20);
-          this.carSpeed = 0;
-        }
-      }
+    if(this.state === 'green'){
+      // if the state is green draw a green light
+      fill(0,255,0);
+      circle(25,115,20);
+      fill(255,0,0,100);
+      circle(25,85,20);
+    }
+    else{
+      //draw a red light
+      fill(0,100,0);
+      circle(25,115,20);
+      fill(255,0,0,255);
+      circle(25,85,20);
+    }
+    if(keyIsPressed && keyCode === 32){
+      // when the space bar is pressed switch state to red
+      this.t = 120;
+      this.state = 'red';
+    }
+    this.t -= 1;
+    if(this.t<1){
+      // when 120 frames have passed switch state to green
+      this.state = 'green';
     }
   }
 }
