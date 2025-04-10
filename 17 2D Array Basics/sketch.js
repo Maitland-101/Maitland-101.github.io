@@ -8,6 +8,7 @@ let grid =[[0, 0, 255, 255, 0],[255, 255, 0, 255, 0],[0, 0, 0, 255, 0]];
 let squareSize = 60;
 const NUM_ROWS = 3; 
 const NUM_COLS = 5;
+let file;
 
 function setup() {
   createCanvas(NUM_COLS * squareSize, NUM_ROWS * squareSize);
@@ -17,19 +18,20 @@ function renderGrid() {
   // interpret the information in the 2D array, and draw
   // a grid of colors on the screen to reflect it.
   for (let y = 0; y < NUM_ROWS; y++) {
+    //cycle through columns
     for (let x = 0; x < NUM_COLS; x++) {
+      //cycle through rows
       let fillColor = grid[y][x];
+      file =+ fillColor;
       fill(fillColor);
       square(x * squareSize, y * squareSize, squareSize);
-      for(let i = 0; i<grid.length; i++){
-        let avgFill =+ fillColor;
-        avgFill = avgFill/(NUM_ROWS*NUM_COLS);
-        if(avgFill === 0){
-          fill(255,0,0);
-          text('you win', 50,50);
-        }
-      }
     }
+  }
+  fill('red');
+  text(file, 50, 50);
+  if(file/15 !== 0){
+    fill(255,0,0);
+    text('you win', 50,50);
   }
 }
 
