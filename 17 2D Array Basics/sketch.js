@@ -8,7 +8,7 @@ let grid =[[0, 0, 255, 255, 0],[255, 255, 0, 255, 0],[0, 0, 0, 255, 0]];
 let squareSize = 60;
 const NUM_ROWS = 3; 
 const NUM_COLS = 5;
-let file;
+let sumOfColor;
 
 function setup() {
   createCanvas(NUM_COLS * squareSize, NUM_ROWS * squareSize);
@@ -22,17 +22,30 @@ function renderGrid() {
     for (let x = 0; x < NUM_COLS; x++) {
       //cycle through rows
       let fillColor = grid[y][x];
-      file =+ fillColor;
+      sumOfColor =+ fillColor;
       fill(fillColor);
       square(x * squareSize, y * squareSize, squareSize);
     }
   }
-  fill('red');
-  text(file, 50, 50);
-  if(file/15 !== 0){
-    fill(255,0,0);
+}
+
+function winCondition(){
+  //when the grid is one color show you win text
+  for (let y = 0; y < NUM_ROWS; y++) {
+    //cycle through columns
+    for (let x = 0; x < NUM_COLS; x++) {
+      //cycle through rows
+      sumOfColor += grid[y][x];
+    }
+  }
+  fill(255,0,0);
+  if(sumOfColor/15 === 0 || sumOfColor/15 === 272){
     text('you win', 50,50);
   }
+}
+
+function randomizedBoard(){
+  //makes the board a random pattern to start
 }
 
 function getCurrentY() {
@@ -85,4 +98,5 @@ function flip(x,y){
 function draw() {
   background(220);
   renderGrid();
+  winCondition();
 }
