@@ -12,6 +12,7 @@ let sumOfColor;
 
 function setup() {
   createCanvas(NUM_COLS * squareSize, NUM_ROWS * squareSize);
+  randomizedBoard();
 }
 
 function renderGrid() {
@@ -39,13 +40,30 @@ function winCondition(){
     }
   }
   fill(255,0,0);
+  textSize(50);
   if(sumOfColor/15 === 0 || sumOfColor/15 === 272){
-    text('you win', 50,50);
+    text('you win!', 50,50);
   }
 }
 
 function randomizedBoard(){
   //makes the board a random pattern to start
+  for (let y = 0; y < NUM_ROWS; y++) {
+    //cycle through columns
+    for (let x = 0; x < NUM_COLS; x++) {
+      let ranColor = floor(random(2));
+      if(ranColor === 1){
+        fill(255)
+        grid[y][x] = 255;
+        square(x * squareSize, y * squareSize, squareSize);
+      }
+      else{
+        fill(0);
+        grid[y][x] = 0;
+        square(x * squareSize, y * squareSize, squareSize);
+      }
+    }
+  }
 }
 
 function getCurrentY() {
@@ -96,7 +114,6 @@ function flip(x,y){
 }
 
 function draw() {
-  background(220);
   renderGrid();
   winCondition();
 }
