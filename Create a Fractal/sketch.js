@@ -1,6 +1,6 @@
 // Create a Fractal
 // Alyssa Maitland
-// Apr.2, 2025
+// May 2, 2025
 // create a triangle with with triangles inside that half their size and move to each corner generated recursivly
 
 function setup() {
@@ -19,6 +19,7 @@ function triangleFractal(x1,y1,triWidth){
   triangle(x1-triWidth,y1+triWidth,x1,y1-triWidth,x1+triWidth,y1+triWidth);
   
   if(triWidth>10){
+    //recursive call
     triangleFractal(x1-triWidth/2,y1+triWidth/2,triWidth/2); //bottom left
     triangleFractal(x1+triWidth/2,y1+triWidth/2,triWidth/2); //bottom right
     triangleFractal(x1,y1-triWidth/2,triWidth/2); //top
