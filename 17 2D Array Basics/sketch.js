@@ -40,9 +40,9 @@ function winCondition(){
     }
   }
   fill(255,0,0);
-  textSize(50);
+  textSize(75);
   if(sumOfColor/15 === 0 || sumOfColor/15 === 272){
-    text('you win!', 50,50);
+    text('you win!', 15,100);
   }
 }
 
@@ -113,7 +113,17 @@ function flip(x,y){
   }
 }
 
+function overlay(){
+  let x = getCurrentX();
+  let y = getCurrentY();
+  fill(0,255,0,100);
+  square(x * squareSize, y * squareSize, squareSize);
+  square(x * -(squareSize), y * squareSize, squareSize)
+}
+
 function draw() {
   renderGrid();
   winCondition();
+  overlay();
 }
+
