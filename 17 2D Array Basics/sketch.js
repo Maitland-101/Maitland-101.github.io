@@ -9,6 +9,7 @@ let squareSize = 60;
 const NUM_ROWS = 3; 
 const NUM_COLS = 5;
 let sumOfColor;
+let space = 0;
 
 function setup() {
   createCanvas(NUM_COLS * squareSize, NUM_ROWS * squareSize);
@@ -87,7 +88,8 @@ function mousePressed() {
   flip(x,y);
 
   //sometimes: (depending on position) flip the neightbours
-  if(keyIsDown(ALT) === false){
+  if(keyIsDown(ALT) === false && space === 0){
+    // when space is 0 flip as a plus
     if(y > 0){
       flip(x, y-1) //North
     }
@@ -99,6 +101,18 @@ function mousePressed() {
     }
     if(x < NUM_COLS-1){
       flip(x+1, y) //East
+    }
+  }
+  if(keyIsDown(ALT) === false && space === 1){
+    // when space is 1 flip as a square
+    if(y < NUM_ROWS-1){
+     flip(x, y+1) //South
+    }
+    if(x > 0){
+      flip(x-1, y) //West
+    }
+    if(x < NUM_COLS-1){
+      flip(x-1, y+1) //Southwest
     }
   }
 }
@@ -116,9 +130,33 @@ function flip(x,y){
 function overlay(){
   let x = getCurrentX();
   let y = getCurrentY();
+  if(keyIsPressed === true){
+    //when a key is down
+    if(key === ' ' && space === 0){
+      //when the spacebar is pressed and space is 0 switch to the 1
+      space = 1; 
+    }
+    else if(key === ' ' && space === 1){
+      //when the spacebar is pressed and space is 1 switch to the 0
+      space = 0;
+    } 
+  }
   fill(0,255,0,100);
-  square(x * squareSize, y * squareSize, squareSize);
-  square(x * -(squareSize), y * squareSize, squareSize)
+  if(space === 0){
+    //overlay for the plus
+    square(x * squareSize, y * squareSize, squareSize); //center
+    square((x-1)*squareSize, y * squareSize, squareSize); //west
+    square((x+1)*squareSize, y * squareSize, squareSize); //east
+    square(x * squareSize, (y-1) * squareSize, squareSize); //south
+    square(x * squareSize, (y+1) * squareSize, squareSize); //north
+  }
+  if(space === 1){
+    //overlay for the square
+    square(x * squareSize, y * squareSize, squareSize); //center
+    square((x-1)*squareSize, y * squareSize, squareSize); //west
+    square(x * squareSize, (y+1) * squareSize, squareSize); //south
+    square((x-1) * squareSize, (y+1) * squareSize, squareSize); //southwest
+  }
 }
 
 function draw() {
