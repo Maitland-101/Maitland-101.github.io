@@ -1,7 +1,7 @@
-// 2D Array Basics
+// Puzzle Game
 // Alyssa Maitland
 // Apr.2, 2025
-// Working with 2D Arrays, Visualizations
+// Make a puzzle that can be solved by clicking the mouse button
 
 //0 255
 let grid =[[0, 0, 255, 255, 0],[255, 255, 0, 255, 0],[0, 0, 0, 255, 0]];
@@ -43,6 +43,7 @@ function winCondition(){
   fill(255,0,0);
   textSize(75);
   if(sumOfColor/15 === 0 || sumOfColor/15 === 272){
+    //when the grid is all the same colour display you win!
     text('you win!', 15,100);
   }
 }
@@ -52,13 +53,16 @@ function randomizedBoard(){
   for (let y = 0; y < NUM_ROWS; y++) {
     //cycle through columns
     for (let x = 0; x < NUM_COLS; x++) {
+      //cycle through rows
       let ranColor = floor(random(2));
       if(ranColor === 1){
+        //if the the ranColour returns a 1 then colour that square white
         fill(255)
         grid[y][x] = 255;
         square(x * squareSize, y * squareSize, squareSize);
       }
       else{
+        //if the the ranColour returns something other than 1 then colour that square black
         fill(0);
         grid[y][x] = 0;
         square(x * squareSize, y * squareSize, squareSize);
@@ -111,7 +115,7 @@ function mousePressed() {
     if(x > 0){
       flip(x-1, y) //West
     }
-    if(x < NUM_COLS-1){
+    if(x < NUM_COLS){
       flip(x-1, y+1) //Southwest
     }
   }
@@ -120,28 +124,21 @@ function mousePressed() {
 function flip(x,y){
   //take a tile and invert its value
   if(grid[y][x] === 0){
+    //if the tile is black turn white
     grid[y][x] = 255;
   }
   else{
+    //if the tile is white turn black
     grid[y][x] = 0;
   }
 }
 
 function overlay(){
+  //make an overlay of the tile that will be turned
   let x = getCurrentX();
   let y = getCurrentY();
-  if(keyIsPressed === true){
-    //when a key is down
-    if(key === ' ' && space === 0){
-      //when the spacebar is pressed and space is 0 switch to the 1
-      space = 1; 
-    }
-    else if(key === ' ' && space === 1){
-      //when the spacebar is pressed and space is 1 switch to the 0
-      space = 0;
-    } 
-  }
-  fill(0,255,0,100);
+
+  fill(0,255,0,100); //transparent green
   if(space === 0){
     //overlay for the plus
     square(x * squareSize, y * squareSize, squareSize); //center
@@ -165,3 +162,14 @@ function draw() {
   overlay();
 }
 
+function keyReleased() {
+  //called when key is pressed
+  if(key === ' ' && space === 0){
+    //when the spacebar is pressed and space is 0 switch to the 1
+    space = 1; 
+  }
+  else if(key === ' ' && space === 1){
+    //when the spacebar is pressed and space is 1 switch to the 0
+    space = 0;
+  } 
+} 
