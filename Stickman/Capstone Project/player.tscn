@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://cklaujb1xpw7p"]
+
+[ext_resource type="Texture2D" uid="uid://roamyx4r2xx2" path="res://Stickman/Stickman_Idle.png" id="1_a42ug"]
+
+[node name="Player" type="CharacterBody2D"]
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("1_a42ug")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(0, 137.003)
+scale = Vector2(1, 2.46528)
+polygon = PackedVector2Array(-6, -83.562, 0, -86.807, 7, -88.0239, 13, -88.0239, 21, -86.4014, 25, -83.562, 25, -79.1, 21, -76.6662, 15, -75.0437, 10, -60.0352, 24, -53.5451, 22, -51.9225, 16, -51.9225, 6, -55.1676, 6, -50.3, 15, -40.1592, 15, -33.2634, 12, -29.6127, 8, -29.6127, 6, -30.8296, 6, -32.4521, 9, -35.6972, 1, -49.4887, -7, -37.7254, -15, -32.0465, -15, -30.4239, -18, -29.6127, -23, -30.8296, -22, -32.4521, -14, -38.9423, -10, -49.0831, -13, -55.9789)
