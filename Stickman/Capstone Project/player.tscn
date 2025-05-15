@@ -1,13 +1,67 @@
-[gd_scene load_steps=2 format=3 uid="uid://cklaujb1xpw7p"]
+[gd_scene load_steps=12 format=3 uid="uid://cklaujb1xpw7p"]
 
 [ext_resource type="Texture2D" uid="uid://roamyx4r2xx2" path="res://Stickman/Stickman_Idle.png" id="1_a42ug"]
+[ext_resource type="Script" path="res://player.gd" id="1_rbx84"]
+[ext_resource type="Texture2D" uid="uid://dfv8et6j4uier" path="res://Stickman/Stickman_run4.png (2).png" id="3_2jycw"]
+[ext_resource type="Texture2D" uid="uid://c565chhbqmvt" path="res://Stickman/Stickman_run5.png (2).png" id="4_sruky"]
+[ext_resource type="Texture2D" uid="uid://cmns57veriwtm" path="res://Stickman/Stickman_run6.png (1).png" id="5_2tqt8"]
+[ext_resource type="Texture2D" uid="uid://dc5h08dys5h7e" path="res://Stickman/Stickman_run7.png (1).png" id="6_cgakn"]
+[ext_resource type="Texture2D" uid="uid://njy7jhqy3dv3" path="res://Stickman/Stickman_run1.png (1).png" id="7_jvshk"]
+[ext_resource type="Texture2D" uid="uid://bum68fv0dpt0i" path="res://Stickman/Stickman_run2.png (1).png" id="8_y8dsc"]
+[ext_resource type="Texture2D" uid="uid://4bc8kugc3f2j" path="res://Stickman/Stickman_run3.png (2).png" id="9_xnp6f"]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mv7sg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_a42ug")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_2jycw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_sruky")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_2tqt8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_cgakn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_jvshk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_y8dsc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xnp6f")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 12.0
+}]
 
-[node name="PlayerSprite" type="Sprite2D" parent="."]
-texture = ExtResource("1_a42ug")
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8gobn"]
+radius = 18.0
+height = 60.0162
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2(0, 137.003)
-scale = Vector2(1, 2.46528)
-polygon = PackedVector2Array(-6, -83.562, 0, -86.807, 7, -88.0239, 13, -88.0239, 21, -86.4014, 25, -83.562, 25, -79.1, 21, -76.6662, 15, -75.0437, 10, -60.0352, 24, -53.5451, 22, -51.9225, 16, -51.9225, 6, -55.1676, 6, -50.3, 15, -40.1592, 15, -33.2634, 12, -29.6127, 8, -29.6127, 6, -30.8296, 6, -32.4521, 9, -35.6972, 1, -49.4887, -7, -37.7254, -15, -32.0465, -15, -30.4239, -18, -29.6127, -23, -30.8296, -22, -32.4521, -14, -38.9423, -10, -49.0831, -13, -55.9789)
+[node name="Player" type="Area2D"]
+script = ExtResource("1_rbx84")
+
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_mv7sg")
+animation = &"Run"
+
+[node name="CollisionPolygon2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(0.5, 1.233)
+shape = SubResource("CapsuleShape2D_8gobn")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
