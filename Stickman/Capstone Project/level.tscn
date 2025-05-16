@@ -1,15 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4jphx7j2sub5"]
+[gd_scene load_steps=6 format=3 uid="uid://c4jphx7j2sub5"]
 
 [ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_eawoi"]
+[ext_resource type="Script" path="res://level.gd" id="1_vnh4l"]
+[ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_toep5"]
 [ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="2_x5v3p"]
 
 [sub_resource type="Curve2D" id="Curve2D_bfwnh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 5
 
-[node name="Level" type="Node2D"]
+[node name="Level" type="Node"]
+script = ExtResource("1_vnh4l")
+mob_scene = ExtResource("2_toep5")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(600, 300)
@@ -31,5 +35,12 @@ one_shot = true
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(50, 400)
 
-[node name="ProjectilePath" type="Path2D" parent="."]
+[node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_bfwnh")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
+[connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
+[connection signal="timeout" from="StartTime" to="." method="_on_start_time_timeout"]

@@ -15,8 +15,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_67lkj"]
-radius = 4.5
-height = 54.0
+radius = 42.0
+height = 544.0
 
 [node name="Projectile" type="RigidBody2D"]
 collision_mask = 0
@@ -24,15 +24,18 @@ gravity_scale = 0.0
 script = ExtResource("1_00mlj")
 
 [node name="ProjectileSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(10, 10)
 sprite_frames = SubResource("SpriteFrames_aw6gn")
 animation = &"Default"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.5)
+position = Vector2(0, -5)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_67lkj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(4.5, -5.5)
+scale = Vector2(26.05, 4.25)
 
 [connection signal="visibility_changed" from="ProjectileSprite" to="." method="_on_projectile_sprite_visibility_changed"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

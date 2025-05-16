@@ -37,7 +37,7 @@ func _process(delta):
 		$PlayerSprite.flip_v = false
 		$PlayerSprite.flip_h = velocity.x < 0
 
-func _on_body_entered(body):
+func _on_body_entered(_body):
 	#called when hit is siganled hides player and diable collision
 	hide()
 	hit.emit()
