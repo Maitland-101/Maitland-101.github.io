@@ -20,7 +20,7 @@ func game_over():
 func new_game():
 	score = 0
 	$Player.start($StartPosition.position)
-	$ScoreTimer.start()
+	$StartTimer.start()
 
 func _on_projectile_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -43,7 +43,7 @@ func _on_projectile_timer_timeout():
 	# Choose the velocity for the mob.
 	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
-
+	print('1')
 	# Spawn the mob by adding it to the Main scene.
 	add_child(mob)
 
@@ -52,6 +52,6 @@ func _on_score_timer_timeout():
 	score += 1
 
 
-func _on_start_time_timeout():
+func _on_start_timer_timeout():
 	$ProjectileTimer.start()
 	$ScoreTimer.start()

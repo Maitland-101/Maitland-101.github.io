@@ -16,24 +16,26 @@ script = ExtResource("1_vnh4l")
 mob_scene = ExtResource("2_toep5")
 
 [node name="Background" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(600, 300)
 scale = Vector2(2, 2)
 texture = ExtResource("1_eawoi")
 
 [node name="Player" parent="." instance=ExtResource("2_x5v3p")]
 position = Vector2(41, 239)
+metadata/_edit_group_ = true
 
 [node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 0.5
 
 [node name="ScoreTimer" type="Timer" parent="."]
 
-[node name="StartTime" type="Timer" parent="."]
+[node name="StartTimer" type="Timer" parent="."]
 wait_time = 2.0
 one_shot = true
 
 [node name="StartPosition" type="Marker2D" parent="."]
-position = Vector2(50, 400)
+position = Vector2(240, 450)
 
 [node name="MobPath" type="Path2D" parent="."]
 curve = SubResource("Curve2D_bfwnh")
@@ -43,4 +45,4 @@ curve = SubResource("Curve2D_bfwnh")
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
-[connection signal="timeout" from="StartTime" to="." method="_on_start_time_timeout"]
+[connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
