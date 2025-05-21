@@ -1,6 +1,6 @@
 extends Node
 
-@export var mob_scene: PackedScene
+@export var projectile_scene: PackedScene
 var score
 
 # Called when the node enters the scene tree for the first time.
@@ -14,44 +14,38 @@ func _process(_delta):
 
 
 func game_over():
+	#stop timers when player is hit
 	$ScoreTimer.stop()
 	$ProjectileTimer.stop()
 
 func new_game():
+	#when a new game is started set player back to spawn and start the timers
 	score = 0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 
 func _on_projectile_timer_timeout():
-	# Create a new instance of the Mob scene.
-	var mob = mob_scene.instantiate()
-
-	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
-	mob_spawn_location.progress_ratio = randf()
-
-	# Set the mob's position to the random location.
-	mob.position = mob_spawn_location.position
-
-	# Set the mob's direction perpendicular to the path direction.
-	var direction = mob_spawn_location.rotation + PI / 2
-
-	# Add some randomness to the direction.
-	direction += randf_range(-PI / 4, PI / 4)
-	mob.rotation = direction
-
-	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
-	mob.linear_velocity = velocity.rotated(direction)
-	print('1')
-	# Spawn the mob by adding it to the Main scene.
-	add_child(mob)
-
+	#creates projectiles every 0.5 seconds until player is hit
+	var projectile = projectile_scene.instantiate()
+	#random spawn location
+	var projectile_spawn_location = $MobPath/MobSpawnLocation
+	projectile_spawn_location.progress_ratio = randf()
+	projectile.position = projectile_spawn_location.position
+	#set direction
+	var direction = projectile_spawn_location.rotation + PI / 2
+	projectile.rotation = direction
+	#speed
+	var velocity = Vector2(250, 0.0)
+	projectile.linear_velocity = velocity.rotated(direction)
+	#add projectile
+	add_child(projectile)
 
 func _on_score_timer_timeout():
+	#add point to score for every second survived
 	score += 1
 
 
 func _on_start_timer_timeout():
+	#when game is started start other timers
 	$ProjectileTimer.start()
 	$ScoreTimer.start()

@@ -1,19 +1,17 @@
-[gd_scene load_steps=6 format=3 uid="uid://c4jphx7j2sub5"]
+[gd_scene load_steps=5 format=3 uid="uid://c4jphx7j2sub5"]
 
 [ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_eawoi"]
 [ext_resource type="Script" path="res://level.gd" id="1_vnh4l"]
-[ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_27bm6"]
 [ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="2_x5v3p"]
 
 [sub_resource type="Curve2D" id="Curve2D_bfwnh"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648)
+"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1152, 0, 0, 0, 0, 0, 1152, 648, 0, 0, 0, 0, 0, 648, 0, 0, 0, 0, 0, 0)
 }
-point_count = 2
+point_count = 5
 
 [node name="Level" type="Node"]
 script = ExtResource("1_vnh4l")
-projectile_scene = ExtResource("2_27bm6")
 
 [node name="Background" type="Sprite2D" parent="."]
 visible = false
@@ -41,8 +39,6 @@ position = Vector2(240, 450)
 curve = SubResource("Curve2D_bfwnh")
 
 [node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
-position = Vector2(1152, 0)
-rotation = 1.5708
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]

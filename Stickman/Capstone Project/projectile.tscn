@@ -24,7 +24,7 @@ gravity_scale = 0.0
 script = ExtResource("1_00mlj")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="ProjectileSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 3.14159
 sprite_frames = SubResource("SpriteFrames_aw6gn")
 animation = &"Default"
@@ -37,5 +37,5 @@ shape = SubResource("CapsuleShape2D_67lkj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 
-[connection signal="visibility_changed" from="AnimatedSprite2D" to="." method="_on_projectile_sprite_visibility_changed"]
+[connection signal="visibility_changed" from="ProjectileSprite2D" to="." method="_on_projectile_sprite_visibility_changed"]
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
