@@ -29,7 +29,7 @@ func new_game():
 	$HUD.update_score(score)
 	$HUD.show_message("get ready")
 	
-	get_tree().call_group("projectiles", "quene_free")
+	get_tree().call_group("Projectiles", "quene_free")
 
 func _on_projectile_timer_timeout():
 	#creates projectiles every 0.5 seconds until player is hit
@@ -45,7 +45,6 @@ func _on_projectile_timer_timeout():
 	var velocity = Vector2(250, 0.0)
 	projectile.linear_velocity = velocity.rotated(direction)
 	#add projectile
-	projectile.add_to_group('projectiles')
 	add_child(projectile)
 
 func _on_score_timer_timeout():

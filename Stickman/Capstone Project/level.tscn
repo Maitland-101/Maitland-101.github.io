@@ -16,16 +16,6 @@ point_count = 2
 script = ExtResource("1_vnh4l")
 projectile_scene = ExtResource("2_27bm6")
 
-[node name="Background" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(600, 300)
-scale = Vector2(2, 2)
-texture = ExtResource("1_eawoi")
-
-[node name="Player" parent="." instance=ExtResource("2_x5v3p")]
-position = Vector2(41, 239)
-metadata/_edit_group_ = true
-
 [node name="ProjectileTimer" type="Timer" parent="."]
 wait_time = 0.5
 
@@ -45,10 +35,20 @@ curve = SubResource("Curve2D_bfwnh")
 position = Vector2(1152, 0)
 rotation = 1.5708
 
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(575.5, 319.75)
+scale = Vector2(1.86741, 1.86752)
+texture = ExtResource("1_eawoi")
+
+[node name="Player" parent="." instance=ExtResource("2_x5v3p")]
+position = Vector2(41, 239)
+metadata/_edit_group_ = true
+
 [node name="HUD" parent="." instance=ExtResource("5_hdlfy")]
 
-[connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="hit" from="Player" to="Player" method="_on_hit"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]

@@ -52,6 +52,7 @@ radius = 18.0
 height = 60.0162
 
 [node name="Player" type="Area2D"]
+gravity_space_override = 1
 script = ExtResource("1_rbx84")
 
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
