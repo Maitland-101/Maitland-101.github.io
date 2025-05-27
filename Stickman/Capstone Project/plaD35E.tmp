@@ -64,3 +64,5 @@ animation = &"Run"
 position = Vector2(0, -5)
 scale = Vector2(0.5, 1.233)
 shape = SubResource("CapsuleShape2D_8gobn")
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
