@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://c4jphx7j2sub5"]
+[gd_scene load_steps=9 format=3 uid="uid://c4jphx7j2sub5"]
 
 [ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_eawoi"]
 [ext_resource type="Script" path="res://level.gd" id="1_vnh4l"]
 [ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_27bm6"]
 [ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="2_x5v3p"]
 [ext_resource type="PackedScene" uid="uid://sn1bmwln1270" path="res://hud.tscn" id="5_hdlfy"]
+[ext_resource type="PackedScene" uid="uid://dmn8hirdo6lj7" path="res://platform.tscn" id="6_k0q85"]
 
 [sub_resource type="Curve2D" id="Curve2D_bfwnh"]
 _data = {
@@ -53,7 +54,20 @@ shape = SubResource("RectangleShape2D_dq24k")
 
 [node name="Player" parent="." instance=ExtResource("2_x5v3p")]
 
+[node name="Platform" parent="." instance=ExtResource("6_k0q85")]
+position = Vector2(752, 472)
+
+[node name="Platform2" parent="." instance=ExtResource("6_k0q85")]
+position = Vector2(304, 500)
+
+[node name="Platform3" parent="." instance=ExtResource("6_k0q85")]
+position = Vector2(528, 523)
+
+[node name="Platform4" parent="." instance=ExtResource("6_k0q85")]
+position = Vector2(528, 392)
+
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="hit" from="Player" to="." method="game_over"]

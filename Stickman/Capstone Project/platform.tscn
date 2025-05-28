@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dmn8hirdo6lj7"]
+
+[ext_resource type="Texture2D" uid="uid://bmdty3r0s134w" path="res://Stickman/Platform.png" id="1_6wsq5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3oom"]
+size = Vector2(28, 4)
+
+[node name="Platform" type="StaticBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(5, 5)
+texture = ExtResource("1_6wsq5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -5)
+scale = Vector2(5, 5)
+shape = SubResource("RectangleShape2D_m3oom")

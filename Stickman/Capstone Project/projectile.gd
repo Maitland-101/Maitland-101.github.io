@@ -14,3 +14,4 @@ func _process(_delta):
 func _on_visible_on_screen_notifier_2d_screen_exited():
 	#delets projectile once it is off the screen
 	queue_free()
+	

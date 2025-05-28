@@ -1,12 +1,9 @@
 extends CharacterBody2D
 signal hit
 
-
-@export var speed = 200
+@export var speed: float = 300.0
+@export var jump_velocity: float = -400.0
 var screen_size
-
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -22,20 +19,28 @@ func _physics_process(delta):
 
 	# Handle jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
+		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("ui_left", "ui_right")
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction * speed
+		$PlayerSprite.play("Run")
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		$PlayerSprite.play("Idle")
+		
+	if velocity.x != 0:
+		#if the player is moving left flip animation
+		$PlayerSprite.animation = "Run"
+		$PlayerSprite.flip_v = false
+		$PlayerSprite.flip_h = velocity.x < 0
 
 	move_and_slide()
 	
 	for i in get_slide_collision_count():
-		#check to see if in contact with a force that make player slide
+		#check to see if in contact with a force that makes the player slide
 		var collision = get_slide_collision(i)
 		if collision.get_collider() is RigidBody2D:
 			#if the force is a rigidBody2D game over
@@ -62,17 +67,9 @@ func _process(delta):
 	if velocity.length() > 0:
 		#if the player moves on a diagonal velocity is still equal to 1 and run movement animation
 		velocity = velocity.normalized() * speed
-		$PlayerSprite.play("Run")
-	else:
-		$PlayerSprite.play("Idle")
 	position += velocity * delta
 	position = position.clamp(Vector2.ZERO, screen_size)
 	
-	if velocity.x != 0:
-		#if the player is moving left flip animation
-		$PlayerSprite.animation = "Run"
-		$PlayerSprite.flip_v = false
-		$PlayerSprite.flip_h = velocity.x < 0
 
 func start(pos):
 	# when game is started again reset player
