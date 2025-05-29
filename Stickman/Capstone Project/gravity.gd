@@ -3,14 +3,15 @@ signal hit
 
 @export var speed: float = 300.0
 @export var jump_velocity: float = -400.0
-var screen_size
+#var screen_size
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	screen_size = get_viewport_rect().size
+	#screen_size = get_viewport_rect().size
+	pass
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -18,12 +19,12 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+	if Input.is_action_just_pressed("up") and is_on_floor():
 		velocity.y = jump_velocity
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
+	var direction = Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * speed
 		$PlayerSprite.play("Run")
@@ -54,21 +55,12 @@ func _physics_process(delta):
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	var velocity = Vector2.ZERO
-	if Input.is_action_pressed("right"):
-		#when up right_arrow or d is pressed move right
-		velocity.x += 1
-	if Input.is_action_pressed("left"):
-		#when up left_arrow or a is pressed move left
-		velocity.x -= 1
-	if Input.is_action_pressed("up"):
-		#when up up_arrow or w is pressed move up
-		velocity.y -= 1
 	
 	if velocity.length() > 0:
 		#if the player moves on a diagonal velocity is still equal to 1 and run movement animation
 		velocity = velocity.normalized() * speed
 	position += velocity * delta
-	position = position.clamp(Vector2.ZERO, screen_size)
+	#position = position.clamp(Vector2.ZERO, screen_size)
 	
 
 func start(pos):
