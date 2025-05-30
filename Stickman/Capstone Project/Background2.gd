@@ -1,0 +1,21 @@
+extends Sprite2D
+
+
+
+const VELOCITY: float = 0
+var g_texture_width: float = 0
+
+
+
+func _ready():
+	g_texture_width = texture.get_size().x * scale.x
+
+
+func _process(_delta):
+	position.x += g_texture_width
+	_attempt_reposition()
+
+
+func _attempt_reposition():
+	if position.x < -g_texture_width:
+		position.x += 2*g_texture_width

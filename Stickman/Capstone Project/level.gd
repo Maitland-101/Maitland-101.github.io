@@ -1,14 +1,16 @@
 extends Node
 
+
+
 @export var projectile_scene: PackedScene
 var score
 
-# Called when the node enters the scene tree for the first time.
+
+
 func _ready():
 	pass
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	pass
 
@@ -20,6 +22,7 @@ func game_over():
 	
 	$HUD.show_game_over()
 
+
 func new_game():
 	#when a new game is started set player back to spawn and start the timers
 	score = 0
@@ -30,6 +33,7 @@ func new_game():
 	$HUD.show_message("get ready")
 	
 	get_tree().call_group("projectiles", "queue_free()")
+
 
 func _on_projectile_timer_timeout():
 	#creates projectiles every 0.5 seconds until player is hit
@@ -46,6 +50,7 @@ func _on_projectile_timer_timeout():
 	projectile.linear_velocity = velocity.rotated(direction)
 	#add projectile
 	add_child(projectile)
+
 
 func _on_score_timer_timeout():
 	#add point to score for every second survived
