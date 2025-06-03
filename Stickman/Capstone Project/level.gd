@@ -3,6 +3,7 @@ extends Node
 
 
 @export var projectile_scene: PackedScene
+@export var platform_scene: PackedScene
 var score
 
 
@@ -50,6 +51,20 @@ func _on_projectile_timer_timeout():
 	projectile.linear_velocity = velocity.rotated(direction)
 	#add projectile
 	add_child(projectile)
+	
+	#var platform = $Platform
+	##random spawn location
+	#var platform_spawn_location = $ProjectilePath/ProjectileSpawnLocation
+	#platform_spawn_location.progress_ratio = randf()
+	#platform.position = platform_spawn_location.position
+	##set direction
+	#var direction1 = platform_spawn_location.rotation + PI / 2
+	#platform.rotation = direction
+	##speed
+	#var velocity1 = Vector2(500, 0.0)
+	#platform.linear_velocity = velocity1.rotated(direction)
+	##add projectile
+	#add_child(platform)
 
 
 func _on_score_timer_timeout():
@@ -63,3 +78,4 @@ func _on_start_timer_timeout():
 	#when game is started start other timers
 	$ProjectileTimer.start()
 	$ScoreTimer.start()
+	$Floor.hide()

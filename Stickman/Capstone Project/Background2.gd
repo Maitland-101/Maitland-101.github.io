@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 
-const VELOCITY: float = 0
+const VELOCITY: float = -5
 var g_texture_width: float = 0
 
 
@@ -12,7 +12,7 @@ func _ready():
 
 
 func _process(_delta):
-	position.x += g_texture_width
+	position.x += VELOCITY
 	_attempt_reposition()
 
 
