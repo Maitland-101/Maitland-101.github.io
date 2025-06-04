@@ -2,7 +2,7 @@ extends Sprite2D
 
 
 
-const VELOCITY: float = -5
+const VELOCITY: float = 0
 var g_texture_width: float = 0
 
 

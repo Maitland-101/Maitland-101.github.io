@@ -3,7 +3,6 @@ extends Node
 
 
 @export var projectile_scene: PackedScene
-@export var platform_scene: PackedScene
 var score
 
 
@@ -27,13 +26,14 @@ func game_over():
 func new_game():
 	#when a new game is started set player back to spawn and start the timers
 	score = 0
+	$Floor.show()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	
 	$HUD.update_score(score)
 	$HUD.show_message("get ready")
 	
-	get_tree().call_group("projectiles", "queue_free()")
+	#get_tree().call_group("projectiles", "queue_free()")
 
 
 func _on_projectile_timer_timeout():
@@ -47,24 +47,10 @@ func _on_projectile_timer_timeout():
 	var direction = projectile_spawn_location.rotation + PI / 2
 	projectile.rotation = direction
 	#speed
-	var velocity = Vector2(250, 0.0)
+	var velocity = Vector2(500, 0.0)
 	projectile.linear_velocity = velocity.rotated(direction)
 	#add projectile
 	add_child(projectile)
-	
-	#var platform = $Platform
-	##random spawn location
-	#var platform_spawn_location = $ProjectilePath/ProjectileSpawnLocation
-	#platform_spawn_location.progress_ratio = randf()
-	#platform.position = platform_spawn_location.position
-	##set direction
-	#var direction1 = platform_spawn_location.rotation + PI / 2
-	#platform.rotation = direction
-	##speed
-	#var velocity1 = Vector2(500, 0.0)
-	#platform.linear_velocity = velocity1.rotated(direction)
-	##add projectile
-	#add_child(platform)
 
 
 func _on_score_timer_timeout():
