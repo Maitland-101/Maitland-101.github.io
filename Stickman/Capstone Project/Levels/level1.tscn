@@ -1,19 +1,20 @@
-[gd_scene load_steps=17 format=3 uid="uid://c4jphx7j2sub5"]
+[gd_scene load_steps=18 format=3 uid="uid://c4jphx7j2sub5"]
 
-[ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_eawoi"]
-[ext_resource type="Script" path="res://level.gd" id="1_vnh4l"]
-[ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_27bm6"]
-[ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="2_x5v3p"]
-[ext_resource type="Texture2D" uid="uid://bmdty3r0s134w" path="res://Stickman/Platform.png" id="4_2ku8r"]
-[ext_resource type="Script" path="res://Background.gd" id="4_cjg60"]
-[ext_resource type="Script" path="res://Background2.gd" id="5_3rinj"]
-[ext_resource type="PackedScene" uid="uid://sn1bmwln1270" path="res://hud.tscn" id="5_hdlfy"]
-[ext_resource type="PackedScene" uid="uid://dmn8hirdo6lj7" path="res://platform.tscn" id="6_k0q85"]
-[ext_resource type="Script" path="res://platform.gd" id="8_gekqn"]
+[ext_resource type="Script" path="res://level.gd" id="1_j77pr"]
+[ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_wu6ri"]
+[ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="3_ismis"]
+[ext_resource type="Script" path="res://Background.gd" id="4_f5p1m"]
+[ext_resource type="Script" path="res://Background2.gd" id="5_l4s4v"]
+[ext_resource type="Texture2D" uid="uid://bmdty3r0s134w" path="res://Stickman/Platform.png" id="6_na87i"]
+[ext_resource type="PackedScene" uid="uid://dmn8hirdo6lj7" path="res://platform.tscn" id="7_2aa48"]
+[ext_resource type="Script" path="res://platform.gd" id="8_tvk7p"]
+[ext_resource type="PackedScene" uid="uid://sn1bmwln1270" path="res://hud.tscn" id="9_tpyox"]
+[ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="10_03omn"]
+[ext_resource type="PackedScene" uid="uid://dobaqd8ebodiw" path="res://next_level.tscn" id="11_o6jhn"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_v1p67"]
 resource_name = "platform"
-texture = ExtResource("4_2ku8r")
+texture = ExtResource("6_na87i")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -33,7 +34,7 @@ texture = ExtResource("4_2ku8r")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hcmkf"]
 resource_name = "ground"
-texture = ExtResource("1_eawoi")
+texture = ExtResource("3_ismis")
 0:0/0 = 0
 0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 0:0/0/physics_layer_0/angular_velocity = 0.0
@@ -2587,37 +2588,37 @@ _data = {
 }
 point_count = 2
 
-[node name="Level" type="Node"]
-script = ExtResource("1_vnh4l")
-projectile_scene = ExtResource("2_27bm6")
+[node name="Level1" type="Node"]
+script = ExtResource("1_j77pr")
+projectile_scene = ExtResource("2_wu6ri")
 
 [node name="BackgroundsHolder" type="Node" parent="."]
 
 [node name="Background" type="Sprite2D" parent="BackgroundsHolder"]
 position = Vector2(302.751, 187.938)
 scale = Vector2(2.67972, 2.89423)
-texture = ExtResource("1_eawoi")
-script = ExtResource("4_cjg60")
+texture = ExtResource("3_ismis")
+script = ExtResource("4_f5p1m")
 
 [node name="Background2" type="Sprite2D" parent="BackgroundsHolder"]
 position = Vector2(3623, 188)
 scale = Vector2(2.67972, 2.89423)
-texture = ExtResource("1_eawoi")
-script = ExtResource("4_cjg60")
+texture = ExtResource("3_ismis")
+script = ExtResource("4_f5p1m")
 
 [node name="BackgroundFlipped" type="Sprite2D" parent="BackgroundsHolder"]
 position = Vector2(1962.75, 188)
 scale = Vector2(2.6238, 2.89459)
-texture = ExtResource("1_eawoi")
+texture = ExtResource("3_ismis")
 flip_h = true
-script = ExtResource("5_3rinj")
+script = ExtResource("5_l4s4v")
 
 [node name="BackgroundFlipped2" type="Sprite2D" parent="BackgroundsHolder"]
 position = Vector2(5283, 187)
 scale = Vector2(2.6238, 2.89459)
-texture = ExtResource("1_eawoi")
+texture = ExtResource("3_ismis")
 flip_h = true
-script = ExtResource("5_3rinj")
+script = ExtResource("5_l4s4v")
 
 [node name="Floor" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_uvb7v")
@@ -2641,42 +2642,42 @@ shape = SubResource("RectangleShape2D_jh57h")
 
 [node name="PlatformsHolder" type="Node" parent="."]
 
-[node name="Platform" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(272, 451)
-script = ExtResource("8_gekqn")
+script = ExtResource("8_tvk7p")
 
-[node name="Platform7" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform7" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(696, 488)
-script = ExtResource("8_gekqn")
+script = ExtResource("8_tvk7p")
 
-[node name="Platform2" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform2" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(1160, 520)
 
-[node name="Platform3" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform3" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(1736, 568)
 
-[node name="Platform4" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform4" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(568, 555)
 
-[node name="Platform5" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform5" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(2184, 543)
 
-[node name="Platform6" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform6" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(1440, 376)
 
-[node name="Platform8" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform8" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(2624, 552)
 
-[node name="Platform9" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform9" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(3072, 560)
 
-[node name="Platform10" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform10" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(3592, 563)
 
-[node name="Platform11" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform11" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(4160, 555)
 
-[node name="Platform12" parent="PlatformsHolder" instance=ExtResource("6_k0q85")]
+[node name="Platform12" parent="PlatformsHolder" instance=ExtResource("7_2aa48")]
 position = Vector2(4752, 547)
 
 [node name="ProjectileTimer" type="Timer" parent="."]
@@ -2696,9 +2697,9 @@ curve = SubResource("Curve2D_bmid5")
 position = Vector2(6000, 0)
 rotation = 1.5708
 
-[node name="HUD" parent="." instance=ExtResource("5_hdlfy")]
+[node name="HUD" parent="." instance=ExtResource("9_tpyox")]
 
-[node name="Player" parent="." instance=ExtResource("2_x5v3p")]
+[node name="Player" parent="." instance=ExtResource("10_03omn")]
 position = Vector2(280, 384)
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
@@ -2714,6 +2715,10 @@ process_callback = 0
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="NextLevel" parent="." instance=ExtResource("11_o6jhn")]
+position = Vector2(1816, 507)
+scale = Vector2(0.25, 0.25)
 
 [connection signal="timeout" from="ProjectileTimer" to="." method="_on_projectile_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dobaqd8ebodiw"]
+
+[ext_resource type="Script" path="res://NextLevel.gd" id="1_t61ar"]
+[ext_resource type="Texture2D" uid="uid://d1b8bj4ha2hm6" path="res://Stickman/Flagpole-1.png.png" id="2_mkbhf"]
+
+[node name="NextLevel" type="Area2D"]
+script = ExtResource("1_t61ar")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_mkbhf")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(104, -80, -94, -22, -94, 181, -114, 181, -114, -200, -95, -200, -95, -137)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
