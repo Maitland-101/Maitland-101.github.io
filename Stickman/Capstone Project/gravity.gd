@@ -50,10 +50,6 @@ func _physics_process(delta):
 			$CollisionPolygon2D.set_deferred("disabled", true)
 
 
-func _process(delta):
-	pass
-
-
 func start(pos):
 	# when game is started again reset player
 	position = pos
