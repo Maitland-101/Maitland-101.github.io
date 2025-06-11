@@ -1,5 +1,7 @@
 extends Node
 
+
+
 @export var projectile_scene: PackedScene
 var score
 
