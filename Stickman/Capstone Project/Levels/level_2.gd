@@ -22,13 +22,14 @@ func game_over():
 
 func new_game():
 	#when a new game is started set player back to spawn and start the timers
-	Global.score = 0
 	$Floor.show()
-	$Player.start($StartPosition.position)
-	$StartTimer.start()
+	#$Player.start($StartPosition.position)
+	#$StartTimer.start()
 	
 	$HUD.update_score(Global.score)
 	$HUD.show_message("get ready")
+	var reset_level = "res://Levels/level_" + str(1) + ".tscn"
+	get_tree().change_scene_to_file(reset_level)
 
 
 func _on_projectile_timer_timeout():

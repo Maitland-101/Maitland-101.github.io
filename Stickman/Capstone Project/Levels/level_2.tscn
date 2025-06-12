@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=3 uid="uid://mejynubb7anv"]
+[gd_scene load_steps=12 format=3 uid="uid://mejynubb7anv"]
 
 [ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_ognne"]
+[ext_resource type="Script" path="res://Levels/level_2.gd" id="1_ua0od"]
+[ext_resource type="PackedScene" uid="uid://cghei0wtafg6e" path="res://projectile.tscn" id="2_4v4ot"]
 [ext_resource type="Script" path="res://Background2.gd" id="2_lrpqn"]
 [ext_resource type="PackedScene" uid="uid://cklaujb1xpw7p" path="res://player.tscn" id="2_tingm"]
 [ext_resource type="PackedScene" uid="uid://dmn8hirdo6lj7" path="res://platform.tscn" id="3_p2t8c"]
 [ext_resource type="Script" path="res://platform.gd" id="4_mnmwp"]
 [ext_resource type="PackedScene" uid="uid://dobaqd8ebodiw" path="res://next_level.tscn" id="6_v84u0"]
+[ext_resource type="PackedScene" uid="uid://sn1bmwln1270" path="res://hud.tscn" id="9_7rjer"]
 
 [sub_resource type="TileSet" id="TileSet_n1dkx"]
 physics_layer_0/collision_layer = 1
@@ -14,6 +17,8 @@ physics_layer_0/collision_layer = 1
 size = Vector2(2868, 225)
 
 [node name="level2" type="Node"]
+script = ExtResource("1_ua0od")
+projectile_scene = ExtResource("2_4v4ot")
 
 [node name="Background" type="Sprite2D" parent="."]
 position = Vector2(302.751, 187.938)
@@ -72,3 +77,8 @@ position = Vector2(47, 445)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
+
+[node name="HUD" parent="." instance=ExtResource("9_7rjer")]
+
+[connection signal="hit" from="Player" to="." method="game_over"]
+[connection signal="start_game" from="HUD" to="." method="new_game"]
