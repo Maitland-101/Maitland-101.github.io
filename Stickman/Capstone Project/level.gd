@@ -22,12 +22,12 @@ func game_over():
 
 func new_game():
 	#when a new game is started set player back to spawn and start the timers
-	Global.score = 0
+	Hud.score = 0
 	$Floor.show()
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	
-	$HUD.update_score(Global.score)
+	$HUD.update_score(Hud.score)
 	$HUD.show_message("get ready")
 
 
@@ -50,9 +50,9 @@ func _on_projectile_timer_timeout():
 
 func _on_score_timer_timeout():
 	#add point to score for every second survived
-	Global.score += 1
+	Hud.score += 1
 	
-	$HUD.update_score(Global.score)
+	$HUD.update_score(Hud.score)
 
 
 func _on_start_timer_timeout():

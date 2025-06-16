@@ -26,7 +26,7 @@ func new_game():
 	#$Player.start($StartPosition.position)
 	#$StartTimer.start()
 	
-	$HUD.update_score(Global.score)
+	$HUD.update_score(Hud.score)
 	$HUD.show_message("get ready")
 	var reset_level = "res://Levels/level_" + str(1) + ".tscn"
 	get_tree().change_scene_to_file(reset_level)
@@ -51,9 +51,9 @@ func _on_projectile_timer_timeout():
 
 func _on_score_timer_timeout():
 	#add point to score for every second survived
-	Global.score += 1
+	Hud.score += 1
 	
-	$HUD.update_score(Global.score)
+	$HUD.update_score(Hud.score)
 
 
 func _on_start_timer_timeout():

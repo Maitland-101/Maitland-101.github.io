@@ -2562,7 +2562,7 @@ size = Vector2(2868, 225)
 
 [sub_resource type="Curve2D" id="Curve2D_bmid5"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 6000, 0, 0, 0, 0, 0, 6000, 600)
+"points": PackedVector2Array(0, 0, 0, 0, 9.8e+06, 14, 0, 0, 0, 0, 6000, 600)
 }
 point_count = 2
 
@@ -2644,8 +2644,8 @@ scale = Vector2(1e-05, 1)
 curve = SubResource("Curve2D_bmid5")
 
 [node name="ProjectileSpawnLocation" type="PathFollow2D" parent="ProjectilePath"]
-position = Vector2(6000, 0)
-rotation = 1.5708
+position = Vector2(9.8e+06, 14)
+rotation = 3.14153
 
 [node name="NextLevel" parent="." instance=ExtResource("11_1adto")]
 position = Vector2(1816, 507)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://mejynubb7anv"]
+[gd_scene load_steps=11 format=3 uid="uid://mejynubb7anv"]
 
 [ext_resource type="Texture2D" uid="uid://dp28orap45hhj" path="res://Stickman/Background.png" id="1_ognne"]
 [ext_resource type="Script" path="res://Levels/level_2.gd" id="1_ua0od"]
@@ -8,7 +8,6 @@
 [ext_resource type="PackedScene" uid="uid://dmn8hirdo6lj7" path="res://platform.tscn" id="3_p2t8c"]
 [ext_resource type="Script" path="res://platform.gd" id="4_mnmwp"]
 [ext_resource type="PackedScene" uid="uid://dobaqd8ebodiw" path="res://next_level.tscn" id="6_v84u0"]
-[ext_resource type="PackedScene" uid="uid://sn1bmwln1270" path="res://hud.tscn" id="9_7rjer"]
 
 [sub_resource type="TileSet" id="TileSet_n1dkx"]
 physics_layer_0/collision_layer = 1
@@ -78,7 +77,4 @@ position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
 
-[node name="HUD" parent="." instance=ExtResource("9_7rjer")]
-
 [connection signal="hit" from="Player" to="." method="game_over"]
-[connection signal="start_game" from="HUD" to="." method="new_game"]
